@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ortodoxia72 · Portal de teología ortodoxa</title>
+<meta name="description" content="Portal personal de teología ortodoxa: guía breve y repositorio de enlaces por temas.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
+<script>
+  // Tema: claro por defecto; se recuerda la elección.
+  try { var t = localStorage.getItem('ortodoxia72.tema'); if (t === 'dark' || t === 'light') document.documentElement.dataset.theme = t; } catch (e) {}
+</script>
+<style>
+  :root {
+    --fondo: #f7f3ea;
+    --panel: #fffdf8;
+    --panel-2: #f1eadb;
+    --tinta: #2a211b;
+    --tinta-2: #6a5c50;
+    --oro: #a67c1f;
+    --oro-suave: #d9c48c;
+    --cinabrio: #8c2a1c;
+    --lapis: #1f3b70;
+    --linea: #e2d8c3;
+    --sombra: 0 1px 2px rgba(60, 40, 10, .06), 0 8px 24px rgba(60, 40, 10, .06);
+    --titulo: "Cormorant Garamond", "Palatino Linotype", Palatino, Georgia, serif;
+    --texto: "Source Serif 4", Georgia, "Times New Roman", serif;
+  }
+  [data-theme="dark"] {
+    --fondo: #10131c;
+    --panel: #181c29;
+    --panel-2: #1f2434;
+    --tinta: #ece4d2;
+    --tinta-2: #a79f8f;
+    --oro: #d4ab4e;
+    --oro-suave: #6f5a2a;
+    --cinabrio: #d9705c;
+    --lapis: #8fb0ea;
+    --linea: #2c3246;
+    --sombra: 0 1px 2px rgba(0, 0, 0, .4), 0 10px 28px rgba(0, 0, 0, .35);
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0; background: var(--fondo); color: var(--tinta);
+    font-family: var(--texto); font-size: 17px; line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--lapis); }
+  button, input, select, textarea { font: inherit; color: inherit; }
+  :focus-visible { outline: 2px solid var(--oro); outline-offset: 2px; }
+  .ancho { max-width: 1120px; margin: 0 auto; padding: 0 20px; }
+
+  /* Cenefa dorada, como el borde de un icono */
+  .cenefa {
+    height: 10px;
+    background:
+      repeating-linear-gradient(90deg, var(--oro) 0 14px, transparent 14px 20px, var(--cinabrio) 20px 26px, transparent 26px 32px),
+      var(--panel-2);
+    border-block: 1px solid var(--oro-suave);
+    opacity: .85;
+  }
+
+  /* Cabecera */
+  header.portada { background: var(--panel); border-bottom: 1px solid var(--linea); }
+  .portada-int { display: flex; align-items: center; gap: 22px; padding: 34px 20px 30px; flex-wrap: wrap; }
+  .cruz { width: 54px; height: 84px; flex: none; color: var(--oro); }
+  .portada h1 {
+    font-family: var(--titulo); font-weight: 700; font-size: clamp(2.3rem, 6vw, 3.6rem);
+    letter-spacing: .04em; line-height: 1; margin: 0; text-wrap: balance;
+  }
+  .portada h1 span { color: var(--cinabrio); }
+  .lema { margin: 8px 0 0; color: var(--tinta-2); font-style: italic; }
+  .portada .titulos { flex: 1 1 320px; }
+  .btn {
+    border: 1px solid var(--linea); background: var(--panel); border-radius: 999px;
+    padding: 8px 16px; cursor: pointer; white-space: nowrap;
+    transition: border-color .15s, background .15s;
+  }
+  .btn:hover { border-color: var(--oro); }
+  .btn.primario { background: var(--cinabrio); border-color: var(--cinabrio); color: #fff8ee; }
+  [data-theme="dark"] .btn.primario { color: #1a0f0c; }
+  .btn.mini { padding: 3px 10px; font-size: .82rem; }
+  .btn.peligro:hover { border-color: var(--cinabrio); color: var(--cinabrio); }
+
+  /* Guía */
+  .guia { padding: 34px 0 10px; }
+  h2 {
+    font-family: var(--titulo); font-weight: 600; font-size: 1.9rem; line-height: 1.15;
+    margin: 0 0 6px; text-wrap: balance;
+  }
+  .sub { color: var(--tinta-2); margin: 0 0 20px; max-width: 68ch; }
+  .guia-rejilla { display: grid; gap: 18px; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+  .nicho {
+    background: var(--panel); border: 1px solid var(--linea); box-shadow: var(--sombra);
+    border-radius: 140px 140px 10px 10px / 70px 70px 10px 10px; /* arco de hornacina */
+    padding: 44px 26px 22px;
+  }
+  .nicho h3 {
+    font-family: var(--titulo); font-size: 1.35rem; margin: 0 0 10px; text-align: center; color: var(--cinabrio);
+  }
+  .nicho ol { margin: 0; padding-left: 1.2em; }
+  .nicho li { margin-bottom: 6px; }
+  .nicho li::marker { color: var(--oro); font-weight: 600; }
+  .nicho b { font-weight: 600; }
+  details.guia-det > summary {
+    cursor: pointer; list-style: none; display: inline-flex; align-items: center; gap: 8px;
+    color: var(--tinta-2); margin-bottom: 18px;
+  }
+  details.guia-det > summary::-webkit-details-marker { display: none; }
+  details.guia-det > summary::before { content: "☩"; color: var(--oro); }
+
+  /* Barra del repositorio */
+  .repo { padding: 30px 0 60px; }
+  .barra { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin-bottom: 14px; }
+  .buscar {
+    flex: 1 1 240px; min-width: 0; padding: 10px 16px; border-radius: 999px;
+    border: 1px solid var(--linea); background: var(--panel);
+  }
+  .chips { display: flex; gap: 8px; overflow-x: auto; padding: 4px 0 14px; scrollbar-width: thin; }
+  .chip {
+    flex: none; text-decoration: none; color: var(--tinta); font-size: .92rem;
+    border: 1px solid var(--linea); background: var(--panel); border-radius: 999px; padding: 4px 14px;
+  }
+  .chip:hover { border-color: var(--oro); }
+  .chip small { color: var(--tinta-2); }
+
+  .tema { margin-top: 30px; scroll-margin-top: 16px; }
+  .tema-cab {
+    display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap;
+    border-bottom: 1px solid var(--oro-suave); padding-bottom: 6px; margin-bottom: 16px;
+  }
+  .tema-cab h3 {
+    font-family: var(--titulo); font-weight: 600; font-size: 1.55rem; margin: 0; flex: 1 1 auto; line-height: 1.2;
+  }
+  .tema-cab h3::before { content: "☦"; color: var(--oro); margin-right: 10px; font-size: .9em; }
+  .tema-acc { display: flex; gap: 6px; }
+  .rejilla { display: grid; gap: 14px; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); }
+  .ficha {
+    background: var(--panel); border: 1px solid var(--linea); border-top: 3px solid var(--oro);
+    border-radius: 6px; padding: 14px 16px 12px; box-shadow: var(--sombra);
+    display: flex; flex-direction: column; gap: 6px; min-width: 0;
+  }
+  .ficha a.titulo {
+    font-family: var(--titulo); font-weight: 600; font-size: 1.28rem; line-height: 1.2;
+    color: var(--tinta); text-decoration: none; overflow-wrap: anywhere;
+  }
+  .ficha a.titulo:hover { color: var(--cinabrio); text-decoration: underline; text-decoration-color: var(--oro); }
+  .ficha .autor { color: var(--cinabrio); font-size: .93rem; }
+  .ficha .nota { color: var(--tinta-2); font-size: .93rem; margin: 0; }
+  .ficha .pie { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; margin-top: auto; padding-top: 8px; }
+  .host { font-size: .8rem; color: var(--tinta-2); overflow-wrap: anywhere; flex: 1 1 auto; font-family: ui-monospace, Menlo, Consolas, monospace; }
+  .sello { font-size: .72rem; letter-spacing: .06em; text-transform: uppercase; border: 1px solid var(--linea); border-radius: 4px; padding: 0 6px; color: var(--tinta-2); }
+  .sello.rev { border-color: var(--cinabrio); color: var(--cinabrio); }
+  .icono { border: 0; background: none; cursor: pointer; color: var(--tinta-2); padding: 2px 6px; border-radius: 4px; font-size: .85rem; }
+  .icono:hover { color: var(--cinabrio); background: var(--panel-2); }
+  .vacio { color: var(--tinta-2); font-style: italic; }
+
+  footer { border-top: 1px solid var(--linea); background: var(--panel); color: var(--tinta-2); font-size: .9rem; }
+  footer .ancho { padding: 20px; }
+
+  /* Diálogos */
+  dialog {
+    border: 1px solid var(--oro-suave); border-top: 4px solid var(--oro); border-radius: 8px;
+    background: var(--panel); color: var(--tinta); padding: 22px; width: min(520px, calc(100vw - 32px));
+    box-shadow: 0 20px 60px rgba(0, 0, 0, .35);
+  }
+  dialog::backdrop { background: rgba(15, 12, 8, .55); }
+  dialog h4 { font-family: var(--titulo); font-size: 1.5rem; margin: 0 0 14px; }
+  .campo { display: block; margin-bottom: 12px; }
+  .campo span { display: block; font-size: .85rem; color: var(--tinta-2); margin-bottom: 3px; }
+  .campo input, .campo select, .campo textarea {
+    width: 100%; padding: 8px 10px; border: 1px solid var(--linea); border-radius: 6px; background: var(--fondo);
+  }
+  .campo textarea { resize: vertical; min-height: 64px; }
+  .dos { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .marca { display: flex; gap: 8px; align-items: center; font-size: .92rem; margin-bottom: 12px; }
+  .acciones { display: flex; justify-content: flex-end; gap: 8px; margin-top: 6px; }
+  .error { color: var(--cinabrio); font-size: .9rem; min-height: 1.2em; margin: 0 0 6px; }
+
+  @media (max-width: 560px) {
+    body { font-size: 16px; }
+    .dos { grid-template-columns: 1fr; }
+    .nicho { border-radius: 90px 90px 10px 10px / 50px 50px 10px 10px; }
+  }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
+</style>
+</head>
+<body>
+
+<div class="cenefa" aria-hidden="true"></div>
+<header class="portada">
+  <div class="ancho portada-int">
+    <svg class="cruz" viewBox="0 0 54 84" aria-hidden="true" fill="currentColor">
+      <rect x="24" y="0" width="6" height="84" rx="1"/>
+      <rect x="15" y="12" width="24" height="5" rx="1"/>
+      <rect x="3" y="28" width="48" height="6" rx="1"/>
+      <rect x="12" y="58" width="30" height="5" rx="1" transform="rotate(20 27 60.5)"/>
+    </svg>
+    <div class="titulos">
+      <h1>Ortodoxia<span>72</span></h1>
+      <p class="lema">Portal de teología ortodoxa: fuentes, autores y enlaces por temas.</p>
+    </div>
+    <button class="btn" id="btnTema" type="button" aria-label="Cambiar entre modo claro y oscuro">☾ Modo oscuro</button>
+  </div>
+</header>
+
+<main>
+  <section class="guia ancho" aria-labelledby="tGuia">
+    <h2 id="tGuia">Cómo se aprende la doctrina ortodoxa</h2>
+    <p class="sub">La Ortodoxia no organiza su fe en una «sistemática» al modo protestante: teología, liturgia y vida espiritual van juntas. Esta guía breve sirve de mapa para el repositorio.</p>
+    <details class="guia-det" open>
+      <summary>Mostrar u ocultar la guía</summary>
+      <div class="guia-rejilla">
+        <article class="nicho">
+          <h3>Las fuentes</h3>
+          <ol>
+            <li><b>Escritura</b>, leída dentro de la Tradición.</li>
+            <li><b>Credo niceno-constantinopolitano</b> y los siete Concilios Ecuménicos.</li>
+            <li><b>Los Padres</b>: Capadocios, Atanasio, Crisóstomo, Máximo, Damasceno, Simeón, Palamás.</li>
+            <li><b>La liturgia y los himnos</b>: lo que se reza es lo que se cree.</li>
+            <li><b>Cánones, iconos y escritos ascéticos</b> como la Filocalia.</li>
+          </ol>
+        </article>
+        <article class="nicho">
+          <h3>Las exposiciones</h3>
+          <ol>
+            <li><b>Síntesis patrística</b> (s. VIII): Juan Damasceno.</li>
+            <li><b>Libros simbólicos</b> (s. XVII–XIX): Mogila, Dositeo, Filareto.</li>
+            <li><b>Manuales académicos</b> (s. XIX–XX): Macario, Androutsos, Trembelas.</li>
+            <li><b>Síntesis neopatrística</b> (s. XX): Florovsky, Lossky, Staniloae, Popović.</li>
+            <li><b>Manuales actuales</b>: Pomazansky, Hopko, Ware.</li>
+          </ol>
+        </article>
+        <article class="nicho">
+          <h3>Ideas clave</h3>
+          <ol>
+            <li><b>Apofatismo</b>: a Dios se lo conoce más por experiencia que por definición.</li>
+            <li><b>Esencia y energías</b>: Dios inaccesible en sí, participable en su gracia.</li>
+            <li><b>Theosis</b>: la salvación como participación en la vida divina.</li>
+            <li><b>Sinergia</b>: cooperación libre del hombre con la gracia.</li>
+            <li><b>Pecado ancestral</b>: se hereda la mortalidad, no la culpa.</li>
+          </ol>
+        </article>
+      </div>
+    </details>
+  </section>
+
+  <section class="repo ancho" aria-labelledby="tRepo">
+    <h2 id="tRepo">Repositorio de enlaces</h2>
+    <p class="sub">Todos los enlaces se abren en una pestaña nueva. Podés agregar, editar y borrar enlaces y temas; los cambios se guardan en este navegador.</p>
+    <div class="barra">
+      <input class="buscar" id="buscar" type="search" placeholder="Buscar por título, autor, nota o dirección…" aria-label="Buscar enlaces">
+      <button class="btn primario" id="btnNuevo" type="button">＋ Agregar enlace</button>
+      <button class="btn" id="btnTemaNuevo" type="button">＋ Tema</button>
+      <button class="btn" id="btnExportar" type="button" title="Descargar links.json">Exportar</button>
+      <button class="btn" id="btnImportar" type="button" title="Cargar un links.json">Importar</button>
+      <button class="btn peligro" id="btnRestaurar" type="button">Restaurar</button>
+      <input type="file" id="archivo" accept="application/json,.json" hidden>
+    </div>
+    <nav class="chips" id="chips" aria-label="Temas"></nav>
+    <div id="temas"></div>
+  </section>
+</main>
+
+<footer>
+  <div class="ancho">
+    Ortodoxia72 · Los enlaces que agregues viven en este navegador. Para llevarlos a otro equipo o dejarlos fijos en el sitio, usá <b>Exportar</b> y subí el archivo <code>links.json</code> junto a <code>index.html</code>.
+  </div>
+</footer>
+<div class="cenefa" aria-hidden="true"></div>
+
+<!-- Diálogo: enlace -->
+<dialog id="dlgEnlace">
+  <form method="dialog" id="frmEnlace">
+    <h4 id="dlgEnlaceTitulo">Agregar enlace</h4>
+    <label class="campo"><span>Título</span><input id="fTitulo" required maxlength="200"></label>
+    <label class="campo"><span>Dirección (URL)</span><input id="fUrl" required inputmode="url" placeholder="https://…"></label>
+    <div class="dos">
+      <label class="campo"><span>Autor (opcional)</span><input id="fAutor" maxlength="120"></label>
+      <label class="campo"><span>Idioma</span>
+        <select id="fIdioma"><option value="ES">Español</option><option value="EN">Inglés</option><option value="">Otro / varios</option></select>
+      </label>
+    </div>
+    <label class="campo"><span>Tema</span><select id="fTema"></select></label>
+    <label class="campo" id="campoTemaNuevo" hidden><span>Nombre del tema nuevo</span><input id="fTemaNuevo" maxlength="80"></label>
+    <label class="campo"><span>Nota (opcional)</span><textarea id="fNota" maxlength="400"></textarea></label>
+    <label class="marca"><input type="checkbox" id="fCheck"> Marcar como «por comprobar»</label>
+    <p class="error" id="fError" role="alert"></p>
+    <div class="acciones">
+      <button class="btn" type="button" data-cerrar>Cancelar</button>
+      <button class="btn primario" type="submit">Guardar</button>
+    </div>
+  </form>
+</dialog>
+
+<!-- Diálogo: nombre de tema -->
+<dialog id="dlgTexto">
+  <form method="dialog" id="frmTexto">
+    <h4 id="dlgTextoTitulo">Tema</h4>
+    <label class="campo"><span>Nombre</span><input id="tValor" required maxlength="80"></label>
+    <div class="acciones">
+      <button class="btn" type="button" data-cerrar>Cancelar</button>
+      <button class="btn primario" type="submit">Guardar</button>
+    </div>
+  </form>
+</dialog>
+
+<!-- Diálogo: confirmar -->
+<dialog id="dlgConfirmar">
+  <h4 id="cTitulo">¿Seguro?</h4>
+  <p id="cTexto"></p>
+  <div class="acciones">
+    <button class="btn" type="button" data-cerrar>Cancelar</button>
+    <button class="btn primario" type="button" id="cSi">Sí, continuar</button>
+  </div>
+</dialog>
+
+<script>
+(function () {
+  'use strict';
+  var CLAVE = 'ortodoxia72.enlaces.v1';
+
+  // ---------- Enlaces iniciales ----------
+  // check:true = no se pudo comprobar automáticamente al armar el portal.
+  var INICIAL = { temas: [
+    { nombre: 'Introducciones y visión general', links: [
+      { titulo: 'The Orthodox Faith (4 tomos)', autor: 'Thomas Hopko', idioma: 'EN', url: 'https://oca.org/orthodoxy/the-orthodox-faith', nota: 'Doctrina, culto, historia y espiritualidad. El mejor punto de partida, gratuito.' },
+      { titulo: 'The Orthodox Way', autor: 'Kallistos Ware', idioma: 'EN', url: 'https://azbyka.ru/otechnik/Kallist_Uer/the-orthodox-way', nota: 'Exposición de la fe como camino: Dios como misterio, Trinidad, Creador, Espíritu, oración.' },
+      { titulo: 'La Iglesia Ortodoxa (PDF)', autor: 'Kallistos Ware', idioma: 'ES', url: 'http://orthodoxmadrid.com/wp-content/uploads/2011/03/Iglesia-Ortodoxa-Kallistos-Ware.pdf', nota: 'Historia y doctrina en un solo volumen, en español.', check: true },
+      { titulo: 'Contemporary Orthodox Theology', autor: 'Aristotle Papanikolaou', idioma: 'EN', url: 'https://azbyka.ru/otechnik/world/the-encyclopedia-of-eastern-orthodox-christianity/68', nota: 'Panorama del siglo XX: escuela rusa, síntesis neopatrística, Zizioulas.' }
+    ]},
+    { nombre: 'Dogmática y manuales', links: [
+      { titulo: 'Teología Dogmática Ortodoxa', autor: 'Miguel Pomazansky', idioma: 'ES', url: 'https://www.azbyka.ru/otechnik/Mihail_Pomazanskij/teologia-dogmatica/', nota: 'Manual conciso y ordenado; lo más parecido a una «sistemática» breve.', check: true },
+      { titulo: 'Orthodox Dogmatic Theology', autor: 'Michael Pomazansky', idioma: 'EN', url: 'https://www.intratext.com/IXT/ENG0824/', nota: 'El mismo manual en inglés, con índice navegable y concordancias.' },
+      { titulo: 'Teología y mística en la tradición de la Iglesia de Oriente', autor: 'Vladimir Lossky', idioma: 'ES', url: 'https://azbyka.ru/otechnik/Vladimir_Losskij/teolog-a-y-m-stica-en-la-tradici-n-de-la-iglesia-de-oriente/', nota: 'Introducción de la «Teología mística de la Iglesia de Oriente», con descarga EPUB/PDF.' }
+    ]},
+    { nombre: 'Padres y síntesis patrística', links: [
+      { titulo: 'Exposición exacta de la fe ortodoxa (NPNF)', autor: 'San Juan Damasceno', idioma: 'EN', url: 'https://www.ccel.org/ccel/schaff/npnf209.toc.html', nota: 'La gran síntesis patrística del siglo VIII, en la edición de Schaff.' },
+      { titulo: 'An Exact Exposition of the Orthodox Faith', autor: 'San Juan Damasceno', idioma: 'EN', url: 'https://orthodox.net/fathers/index.html', nota: 'El mismo texto, navegable por libro y capítulo.' }
+    ]},
+    { nombre: 'Libros simbólicos y catecismos', links: [
+      { titulo: 'Catecismo Mayor de la Iglesia Ortodoxa', autor: 'San Filareto de Moscú', idioma: 'EN', url: 'https://ccel.org/ccel/schaff/creeds2.vi.iii.html', nota: 'Texto completo en «Creeds of Christendom» de Schaff.' },
+      { titulo: 'Confesión de Dositeo (versión de san Filareto)', autor: 'Sínodo de Jerusalén, 1672', idioma: 'EN', url: 'https://orthodoxchristiantheology.com/2022/12/17/confession-of-dositheus-saint-filaret-of-moscow/', nota: 'Con notas sobre las diferencias entre versiones.' },
+      { titulo: 'Orthodox Symbolic Books', autor: 'New Catholic Encyclopedia', idioma: 'EN', url: 'https://encyclopedia.com/religion/encyclopedias-almanacs-transcripts-and-maps/orthodox-symbolic-books', nota: 'Qué son los libros simbólicos y cuánta autoridad tiene cada uno. Fuente católica.' }
+    ]},
+    { nombre: 'Pecado ancestral y antropología', links: [
+      { titulo: 'Ancestral Versus Original Sin', autor: 'Anthony Hughes', idioma: 'EN', url: 'https://mail.oodegr.com/english/ekklisia/ancestral_vs_original_sin.htm', nota: 'Contrasta la herencia de la muerte (Oriente) con la herencia de la culpa (Agustín).' },
+      { titulo: 'Evil and Guilt: On Original Sin and Ancestral Sin (PDF)', autor: 'Marcelo López Cambronero', idioma: 'EN', url: 'https://dehesa.unex.es/bitstream/10662/20970/1/2340-4256_18_525.pdf', nota: 'Artículo académico (Cauriensia, 2023) que revisa el debate y matiza a Romanides.' }
+    ]},
+    { nombre: 'Escatología e infierno', links: [
+      { titulo: 'The River of Fire', autor: 'Alexandre Kalomiros', idioma: 'EN', url: 'https://apostoliki-diakonia.gr/en/the-river-of-fire/', nota: 'El infierno como el amor de Dios experimentado por quien lo rechaza. Texto polémico e influyente.' },
+      { titulo: '¿Es patrística la imagen del «río de fuego»?', autor: 'Pravmir', idioma: 'EN', url: 'https://www.pravmir.com/?p=275661', nota: 'Respuesta ortodoxa que matiza la lectura de Kalomiros frente a los Padres.' }
+    ]},
+    { nombre: 'Espíritu Santo y vida espiritual', links: [
+      { titulo: 'Sobre la adquisición del Espíritu Santo', autor: 'San Serafín de Sarov', idioma: 'EN', url: 'https://orthochristian.com/47866.html', nota: 'Conversación con Motovilov: el fin de la vida cristiana es adquirir el Espíritu Santo.', check: true },
+      { titulo: 'La autenticidad de la conversación con Motovilov', autor: 'John Sanidopoulos', idioma: 'EN', url: 'https://www.johnsanidopoulos.com/2020/01/the-authenticity-of-conversation.html', nota: 'Lectura crítica: dudas sobre el origen del texto anterior.' },
+      { titulo: 'El Espíritu Santo en la Revelación y en la Iglesia', autor: 'Dumitru Staniloae', idioma: 'ES', url: 'https://www.ecclesia.org.br/biblioteca/teologia/dumitru-staniloae-el-espiritu-santo-en-la-revelacion.html', nota: 'Pneumatología del gran dogmático rumano, en español.', check: true },
+      { titulo: 'La Filocalia de la oración de Jesús (muestra PDF)', autor: 'Ediciones Sígueme', idioma: 'ES', url: 'https://www.sigueme.es/docs/libros/la-filocalia-r2026-web.pdf', nota: 'Introducción y primeras páginas de la antología en español.', check: true }
+    ]},
+    { nombre: 'Bibliotecas y repositorios', links: [
+      { titulo: 'Recursos ortodoxos en español', autor: 'Holy Annunciation (Brisbane)', idioma: 'ES', url: 'https://holyannunciation.net/spanish', nota: 'Índice de textos litúrgicos, libros, catequesis y podcasts en español.' },
+      { titulo: 'Libros ortodoxos en español', autor: 'Azbyka', idioma: 'ES', url: 'https://www.azbyka.ru/otechnik/spanish/', nota: 'Biblia, patrología, liturgia, historia y teología.', check: true },
+      { titulo: 'Teología: publicaciones en español', autor: 'Obispo Alejandro Mileant', idioma: 'ES', url: 'https://www.fatheralexander.org/page32.htm', nota: 'Pomazansky, Florovsky y folletos misioneros.', check: true },
+      { titulo: 'Biblioteca Ortodoxa en Español', autor: 'Iglesia Ortodoxa (Chile)', idioma: 'ES', url: 'https://www.iglesiaortodoxa.cl/biblioteca', nota: '', check: true },
+      { titulo: 'Podcasts en español', autor: 'Ancient Faith Radio', idioma: 'ES', url: 'https://www.ancientfaith.com/podcasts/espanol', nota: '', check: true }
+    ]}
+  ]};
+
+  // ---------- Estado ----------
+  var estado = { temas: [] };
+  var $ = function (id) { return document.getElementById(id); };
+  function uid() { return Date.now().toString(36) + Math.random().toString(36).slice(2, 8); }
+
+  function normalizar(datos) {
+    if (!datos || !Array.isArray(datos.temas)) throw new Error('formato');
+    return { temas: datos.temas.map(function (t) {
+      return {
+        id: String(t.id || uid()),
+        nombre: String(t.nombre || 'Sin nombre').slice(0, 80),
+        links: (Array.isArray(t.links) ? t.links : []).filter(function (l) { return l && urlValida(l.url); }).map(function (l) {
+          return {
+            id: String(l.id || uid()),
+            titulo: String(l.titulo || l.url).slice(0, 200),
+            url: urlValida(l.url),
+            autor: String(l.autor || '').slice(0, 120),
+            idioma: String(l.idioma || '').slice(0, 4).toUpperCase(),
+            nota: String(l.nota || '').slice(0, 400),
+            check: !!l.check
+          };
+        })
+      };
+    }) };
+  }
+  function urlValida(texto) {
+    var s = String(texto || '').trim();
+    if (!s) return '';
+    if (!/^[a-z][a-z0-9+.-]*:/i.test(s)) s = 'https://' + s;
+    try {
+      var u = new URL(s);
+      return (u.protocol === 'http:' || u.protocol === 'https:') ? u.href : '';
+    } catch (e) { return ''; }
+  }
+  function guardar() {
+    try { localStorage.setItem(CLAVE, JSON.stringify(estado)); } catch (e) {}
+  }
+  function cargarBase() {
+    // Si hay un links.json junto al index.html (p. ej. en el repo), se usa como base.
+    return fetch('links.json', { cache: 'no-store' })
+      .then(function (r) { if (!r.ok) throw 0; return r.json(); })
+      .then(normalizar)
+      .catch(function () { return normalizar(INICIAL); });
+  }
+  function iniciar() {
+    var guardado = null;
+    try { guardado = JSON.parse(localStorage.getItem(CLAVE)); } catch (e) {}
+    if (guardado) {
+      try { estado = normalizar(guardado); pintar(); return; } catch (e) {}
+    }
+    cargarBase().then(function (d) { estado = d; pintar(); });
+  }
+
+  // ---------- Pintado ----------
+  function el(tag, attrs, hijos) {
+    var n = document.createElement(tag);
+    if (attrs) Object.keys(attrs).forEach(function (k) {
+      if (k === 'text') n.textContent = attrs[k];
+      else if (k === 'on') Object.keys(attrs.on).forEach(function (ev) { n.addEventListener(ev, attrs.on[ev]); });
+      else n.setAttribute(k, attrs[k]);
+    });
+    (hijos || []).forEach(function (h) { if (h) n.appendChild(h); });
+    return n;
+  }
+  function host(url) { try { return new URL(url).hostname.replace(/^www\./, ''); } catch (e) { return ''; } }
+
+  function pintar() {
+    var q = $('buscar').value.trim().toLowerCase();
+    var chips = $('chips'), cont = $('temas');
+    chips.textContent = ''; cont.textContent = '';
+    var total = 0;
+
+    estado.temas.forEach(function (t) {
+      var visibles = t.links.filter(function (l) {
+        return !q || [l.titulo, l.autor, l.nota, l.url, t.nombre].join(' ').toLowerCase().indexOf(q) !== -1;
+      });
+      if (q && !visibles.length) return;
+      total += visibles.length;
+
+      var chip = el('a', { class: 'chip', href: '#tema-' + t.id });
+      chip.appendChild(document.createTextNode(t.nombre + ' '));
+      chip.appendChild(el('small', { text: String(visibles.length) }));
+      chips.appendChild(chip);
+
+      var rejilla = el('div', { class: 'rejilla' });
+      visibles.forEach(function (l) { rejilla.appendChild(ficha(t, l)); });
+      if (!visibles.length) rejilla.appendChild(el('p', { class: 'vacio', text: 'Todavía no hay enlaces en este tema.' }));
+
+      cont.appendChild(el('section', { class: 'tema', id: 'tema-' + t.id }, [
+        el('div', { class: 'tema-cab' }, [
+          el('h3', { text: t.nombre }),
+          el('div', { class: 'tema-acc' }, [
+            el('button', { class: 'btn mini', type: 'button', text: '＋ Enlace', on: { click: function () { abrirEnlace(null, t.id); } } }),
+            el('button', { class: 'btn mini', type: 'button', text: 'Renombrar', on: { click: function () { renombrarTema(t); } } }),
+            el('button', { class: 'btn mini peligro', type: 'button', text: 'Eliminar', on: { click: function () { eliminarTema(t); } } })
+          ])
+        ]),
+        rejilla
+      ]));
+    });
+
+    if (!total && q) cont.appendChild(el('p', { class: 'vacio', text: 'Ningún enlace coincide con «' + q + '».' }));
+    if (!estado.temas.length) cont.appendChild(el('p', { class: 'vacio', text: 'No hay temas. Creá uno con «＋ Tema».' }));
+  }
+
+  function ficha(t, l) {
+    return el('article', { class: 'ficha' }, [
+      el('a', { class: 'titulo', href: l.url, target: '_blank', rel: 'noopener noreferrer', text: l.titulo }),
+      l.autor ? el('div', { class: 'autor', text: l.autor }) : null,
+      l.nota ? el('p', { class: 'nota', text: l.nota }) : null,
+      el('div', { class: 'pie' }, [
+        el('span', { class: 'host', text: host(l.url) }),
+        l.idioma ? el('span', { class: 'sello', text: l.idioma }) : null,
+        l.check ? el('span', { class: 'sello rev', title: 'Enlace aún no comprobado', text: 'por comprobar' }) : null,
+        el('button', { class: 'icono', type: 'button', 'aria-label': 'Editar ' + l.titulo, title: 'Editar', text: '✎', on: { click: function () { abrirEnlace(l, t.id); } } }),
+        el('button', { class: 'icono', type: 'button', 'aria-label': 'Borrar ' + l.titulo, title: 'Borrar', text: '✕', on: { click: function () { borrarEnlace(t, l); } } })
+      ])
+    ]);
+  }
+
+  // ---------- Diálogos ----------
+  document.querySelectorAll('[data-cerrar]').forEach(function (b) {
+    b.addEventListener('click', function () { b.closest('dialog').close(); });
+  });
+
+  var alConfirmar = null;
+  function confirmar(titulo, texto, hacer) {
+    $('cTitulo').textContent = titulo; $('cTexto').textContent = texto; alConfirmar = hacer;
+    $('dlgConfirmar').showModal();
+  }
+  $('cSi').addEventListener('click', function () { $('dlgConfirmar').close(); if (alConfirmar) alConfirmar(); alConfirmar = null; });
+
+  var alTexto = null;
+  function pedirTexto(titulo, valor, hacer) {
+    $('dlgTextoTitulo').textContent = titulo; $('tValor').value = valor || ''; alTexto = hacer;
+    $('dlgTexto').showModal(); $('tValor').focus();
+  }
+  $('frmTexto').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var v = $('tValor').value.trim(); if (!v) return;
+    $('dlgTexto').close(); if (alTexto) alTexto(v); alTexto = null;
+  });
+
+  // Enlace: alta y edición
+  var editando = null; // { link, temaId } o null
+  function abrirEnlace(link, temaId) {
+    editando = link ? { link: link, temaId: temaId } : null;
+    $('dlgEnlaceTitulo').textContent = link ? 'Editar enlace' : 'Agregar enlace';
+    $('fTitulo').value = link ? link.titulo : '';
+    $('fUrl').value = link ? link.url : '';
+    $('fAutor').value = link ? link.autor : '';
+    $('fIdioma').value = link ? (link.idioma === 'ES' || link.idioma === 'EN' ? link.idioma : '') : 'ES';
+    $('fNota').value = link ? link.nota : '';
+    $('fCheck').checked = link ? link.check : false;
+    $('fTemaNuevo').value = ''; $('fError').textContent = '';
+    var sel = $('fTema'); sel.textContent = '';
+    estado.temas.forEach(function (t) { sel.appendChild(el('option', { value: t.id, text: t.nombre })); });
+    sel.appendChild(el('option', { value: '__nuevo', text: '＋ Tema nuevo…' }));
+    sel.value = temaId || (estado.temas[0] ? estado.temas[0].id : '__nuevo');
+    alternarTemaNuevo();
+    $('dlgEnlace').showModal(); $('fTitulo').focus();
+  }
+  function alternarTemaNuevo() { $('campoTemaNuevo').hidden = $('fTema').value !== '__nuevo'; }
+  $('fTema').addEventListener('change', alternarTemaNuevo);
+
+  $('frmEnlace').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var titulo = $('fTitulo').value.trim(), url = urlValida($('fUrl').value);
+    if (!titulo) { $('fError').textContent = 'Falta el título.'; return; }
+    if (!url) { $('fError').textContent = 'La dirección no es válida (debe ser http o https).'; return; }
+    var temaId = $('fTema').value, tema;
+    if (temaId === '__nuevo') {
+      var nombre = $('fTemaNuevo').value.trim();
+      if (!nombre) { $('fError').textContent = 'Escribí el nombre del tema nuevo.'; return; }
+      tema = { id: uid(), nombre: nombre, links: [] }; estado.temas.push(tema);
+    } else {
+      tema = estado.temas.filter(function (t) { return t.id === temaId; })[0];
+    }
+    if (!tema) { $('fError').textContent = 'Elegí un tema.'; return; }
+    var datos = {
+      id: editando ? editando.link.id : uid(), titulo: titulo, url: url,
+      autor: $('fAutor').value.trim(), idioma: $('fIdioma').value,
+      nota: $('fNota').value.trim(), check: $('fCheck').checked
+    };
+    if (editando) {
+      var origen = estado.temas.filter(function (t) { return t.id === editando.temaId; })[0];
+      if (origen && origen.id === tema.id) {
+        origen.links = origen.links.map(function (l) { return l.id === datos.id ? datos : l; });
+      } else {
+        if (origen) origen.links = origen.links.filter(function (l) { return l.id !== datos.id; });
+        tema.links.push(datos);
+      }
+    } else {
+      tema.links.push(datos);
+    }
+    guardar(); $('dlgEnlace').close(); pintar();
+  });
+
+  function borrarEnlace(t, l) {
+    confirmar('Borrar enlace', '¿Borrar «' + l.titulo + '»?', function () {
+      t.links = t.links.filter(function (x) { return x.id !== l.id; }); guardar(); pintar();
+    });
+  }
+  function renombrarTema(t) {
+    pedirTexto('Renombrar tema', t.nombre, function (v) { t.nombre = v; guardar(); pintar(); });
+  }
+  function eliminarTema(t) {
+    var n = t.links.length;
+    confirmar('Eliminar tema', '¿Eliminar «' + t.nombre + '»' + (n ? ' y sus ' + n + ' enlaces' : '') + '?', function () {
+      estado.temas = estado.temas.filter(function (x) { return x.id !== t.id; }); guardar(); pintar();
+    });
+  }
+
+  // ---------- Barra ----------
+  $('buscar').addEventListener('input', pintar);
+  $('btnNuevo').addEventListener('click', function () { abrirEnlace(null, null); });
+  $('btnTemaNuevo').addEventListener('click', function () {
+    pedirTexto('Tema nuevo', '', function (v) { estado.temas.push({ id: uid(), nombre: v, links: [] }); guardar(); pintar(); });
+  });
+  $('btnExportar').addEventListener('click', function () {
+    var blob = new Blob([JSON.stringify(estado, null, 2)], { type: 'application/json' });
+    var a = el('a', { href: URL.createObjectURL(blob), download: 'links.json' });
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(function () { URL.revokeObjectURL(a.href); }, 1000);
+  });
+  $('btnImportar').addEventListener('click', function () { $('archivo').click(); });
+  $('archivo').addEventListener('change', function () {
+    var f = this.files[0]; this.value = ''; if (!f) return;
+    f.text().then(function (txt) {
+      var nuevo;
+      try { nuevo = normalizar(JSON.parse(txt)); }
+      catch (e) { confirmar('No se pudo importar', 'El archivo no tiene el formato de links.json.', null); return; }
+      confirmar('Importar enlaces', 'Esto reemplaza los enlaces actuales por los del archivo. ¿Continuar?', function () {
+        estado = nuevo; guardar(); pintar();
+      });
+    });
+  });
+  $('btnRestaurar').addEventListener('click', function () {
+    confirmar('Restaurar', 'Se descartan tus cambios en este navegador y se vuelve a la lista base del sitio. ¿Continuar?', function () {
+      try { localStorage.removeItem(CLAVE); } catch (e) {}
+      cargarBase().then(function (d) { estado = d; pintar(); });
+    });
+  });
+
+  // ---------- Tema claro / oscuro ----------
+  function rotuloTema() {
+    var oscuro = document.documentElement.dataset.theme === 'dark';
+    $('btnTema').textContent = oscuro ? '☀ Modo claro' : '☾ Modo oscuro';
+  }
+  $('btnTema').addEventListener('click', function () {
+    var nuevo = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+    document.documentElement.dataset.theme = nuevo;
+    try { localStorage.setItem('ortodoxia72.tema', nuevo); } catch (e) {}
+    rotuloTema();
+  });
+  rotuloTema();
+
+  iniciar();
+})();
+</script>
+</body>
+</html>
